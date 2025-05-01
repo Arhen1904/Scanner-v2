@@ -5,6 +5,9 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     libgl1-mesa-glx \
     libglib2.0-0 \
+    libsm6 \
+    libxrender1 \
+    libxext6 \
     && rm -rf /var/lib/apt/lists/*
 
 # Establecer el directorio de trabajo
