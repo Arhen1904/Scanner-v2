@@ -1,19 +1,23 @@
 FROM python:3.10-slim
 
-# Instalar dependencias del sistema necesarias para OpenCV
-RUN apt-get update && apt-get install -y libgl1-mesa-glx libc6 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
+# Instalar dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y \
+    libgomp1 \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
 
-# Establecer directorio de trabajo
+# Establecer el directorio de trabajo
 WORKDIR /app
 
-# Copiar archivos del proyecto
+# Copiar los archivos del proyecto
 COPY . .
 
-# Instalar dependencias de Python
+# Instalar las dependencias de Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Exponer el puerto
+# Exponer el puerto (ajusta según tu aplicación)
 EXPOSE 5000
 
-# Comando para iniciar tu app
+# Comando para iniciar tu aplicación
 CMD ["python", "server.py"]
